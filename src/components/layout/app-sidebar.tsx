@@ -65,8 +65,8 @@ const data = {
           url: "/Aula",
         },
         {
-          title: "Personal",
-          url: "#",
+          title: "Cine",
+          url: "/Cine",
         },
         {
           title: "Historial",
