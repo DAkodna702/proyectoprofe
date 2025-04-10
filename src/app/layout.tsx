@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/app-sidebar";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MessageSquare } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +32,30 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <SidebarProvider>
+          <AppSidebar />
+          <SidebarInset className="flex flex-col">
+      <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6">
+        <SidebarTrigger />
+        <div className="flex flex-1 items-center justify-end">
+          <div className="flex items-center gap-4">
+            <Button variant="outline" size="icon">
+              <MessageSquare className="h-5 w-5" />
+              <span className="sr-only">Messages</span>
+            </Button>
+            <Avatar>
+              <AvatarImage
+                src="/placeholder.svg?height=40&width=40"
+                alt="User"
+              />
+              <AvatarFallback>AD</AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+         </header>
+            {children}
+            </SidebarInset>
+        </SidebarProvider>
       </body>
     </html>
   );
